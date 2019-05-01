@@ -1,4 +1,4 @@
-import { fork, takeEvery, call, put, select } from 'redux-saga/effects';
+import { fork, takeEvery, put } from 'redux-saga/effects';
 import createWatchSocketChannel from 'utils/createWatchSocketChannel';
 import messageTransformer from 'utils/messageTransformer';
 import {
