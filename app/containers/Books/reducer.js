@@ -14,9 +14,10 @@ import {
 } from './constants';
 
 const calculateTotal = (d, index, array) => {
+  const dataArray = d;
   const prevIndex = index === 0 ? false : index - 1;
-  d.push(d[2] + (prevIndex ? array[prevIndex][3] : 0));
-  return d;
+  dataArray[3] = d[2] + (prevIndex ? array[prevIndex][3] : 0);
+  return dataArray;
 };
 
 export const initialState = { precision: 'P0', data: [] };
@@ -46,7 +47,7 @@ const booksReducer = (state = initialState, { type, payload }) =>
         break;
       }
       case SET_DATA:
-        draft.data = payload.map(calculateTotal);
+        draft.data = payload.map(calculateTotal); // payload;
         break;
       case SET_INFO:
         draft.info = payload;
