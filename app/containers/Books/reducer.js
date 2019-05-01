@@ -13,14 +13,7 @@ import {
   SET_PRECISION,
 } from './constants';
 
-const calculateTotal = (d, index, array) => {
-  const dataArray = d;
-  const prevIndex = index === 0 ? false : index - 1;
-  dataArray[3] = d[2] + (prevIndex ? array[prevIndex][3] : 0);
-  return dataArray;
-};
-
-export const initialState = { precision: 'P0', data: [] };
+export const initialState = { precision: 'P3', data: [] };
 
 /* eslint-disable default-case, no-param-reassign */
 const booksReducer = (state = initialState, { type, payload }) =>
@@ -30,12 +23,12 @@ const booksReducer = (state = initialState, { type, payload }) =>
         const price = payload[0];
         const idx = draft.data.findIndex(d => d[0] === price);
         draft.data.splice(idx, 1);
-        draft.data = draft.data.map(calculateTotal);
         break;
       }
       case UPSERT_DATA: {
         // search for existing count
         const count = payload[1];
+
         const idx = draft.data.findIndex(d => d[1] === count);
         if (idx > -1) {
           draft.data[idx] = payload;
@@ -43,11 +36,10 @@ const booksReducer = (state = initialState, { type, payload }) =>
           draft.data.push(payload);
           // should remove first lowest count too
         }
-        draft.data = draft.data.map(calculateTotal);
         break;
       }
       case SET_DATA:
-        draft.data = payload.map(calculateTotal); // payload;
+        draft.data = payload;
         break;
       case SET_INFO:
         draft.info = payload;
