@@ -51,9 +51,10 @@ const booksReducer = (state = initialState, { type, payload }) =>
       case SET_INFO:
         draft.info = payload;
         break;
-      case SET_PRECISION:
+      case SET_PRECISION: {
         draft.precision = payload;
         break;
+      }
       case SET_SUBSCRIBED:
         draft.subscribed = payload;
         break;
