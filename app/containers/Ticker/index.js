@@ -60,7 +60,7 @@ export function Ticker({ ticker: { data } }) {
           </NumericLabel>{' '}
           (
           <NumericLabel params={{ percentage: true, justification: 'L' }}>
-            {dataMap.DAILY_CHANGE_PERC * 100}
+            {dataMap.DAILY_CHANGE_PERC}
           </NumericLabel>
           )
         </span>
